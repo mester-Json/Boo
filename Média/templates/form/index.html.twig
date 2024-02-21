@@ -1,22 +1,33 @@
-{% block stylesheets %}
+{% extends 'base.html.twig' %}
+{% block stylesheets    %}
 	<link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
-
-
+{% block title %}Hello Home!
+{% endblock %}
 {% block body %}
 	{% include 'header.html.twig' %}
 
 	<h1>Créer une personne</h1>
-	{% if form.parent is null %}
-		{% if form_errors(form) %}
-			<div class="error-message">
-				{{ form_errors(form) }}
-			</div>
-		{% endif %}
-	{% endif %}
-
 	{{ form_start(form) }}
-	{{ form_widget(form) }}
+	{{ form_label(form.Tittle) }}
+	{{ form_widget(form.Tittle)}}
+	<div class="form-error">{{ form_errors(form.Tittle) }}</div>
+
+
+	{{ form_label(form.Author) }}
+	{{ form_widget(form.Author)}}
+	<div class="form-error">{{ form_errors(form.Author) }}</div>
+
+
+	{{ form_label(form.Code) }}
+	{{ form_widget(form.Code)}}
+	<div class="form-error">{{ form_errors(form.Code) }}</div>
+
+
+	{{ form_label(form.price) }}
+	{{ form_widget(form.price)}}
+	<div class="form-error">{{ form_errors(form.price) }}</div>
+
 
 	<button type="submit" class="btn btn-success">Créer</button>
 	{{ form_end(form) }}
