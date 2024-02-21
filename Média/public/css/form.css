@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #666;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #5cb85c;
+    color: #fff;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #449d44;
+}
+
+.error-message {
+    color: red;
+
+}

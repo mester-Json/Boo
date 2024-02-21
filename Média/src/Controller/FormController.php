@@ -7,11 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Book;
+use App\Form\BookType;
 
 class FormController extends AbstractController
 {
 
-    #[Route('/form', name: 'app_form')]
+    #[Route('/form', name: 'book_add')]
     public function creat(Request $request, EntityManagerInterface $em): Response
     {
         $person = new Book();
@@ -24,12 +26,13 @@ class FormController extends AbstractController
 
 
 
-            return $this->redirectToRoute('app_form');
+            return $this->redirectToRoute('book_add');
         }
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('form/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
 
 }

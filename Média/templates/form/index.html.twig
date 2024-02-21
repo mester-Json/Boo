@@ -1,13 +1,23 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello Home!
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
+
 {% block body %}
+	{% include 'header.html.twig' %}
+
 	<h1>Créer une personne</h1>
+	{% if form.parent is null %}
+		{% if form_errors(form) %}
+			<div class="error-message">
+				{{ form_errors(form) }}
+			</div>
+		{% endif %}
+	{% endif %}
 
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
+
 	<button type="submit" class="btn btn-success">Créer</button>
 	{{ form_end(form) }}
 {% endblock %}
