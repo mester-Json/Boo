@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
-
-{% block stylesheets    %}
+{% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/details.css') }}">
 {% endblock %}
 {% block title %}Détails du livre
@@ -14,11 +13,13 @@
 	<p>Titre :
 		{{ book.tittle }}</p>
 	<p>Auteur :
-		{{ book.author }}</p>
+		{{ book.autor.name }}</p>
 	<p>ISBN :
 		{{ book.code }}</p>
 	<p>Prix :
 		{{ book.price }}</p>
+	<p>Editor :
+		{{ book.editor.name }}</p>
 
 	<a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
 {% endblock %}

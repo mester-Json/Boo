@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets    %}
+{% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 {% endblock %}
-
-
 {% block body %}
 	{% include 'header.html.twig' %}
 
-	<h1>Détails des livres</h1>
+	<h1>Liste des livres</h1>
+
 
 	{% for book in books %}
-		<p>Titre :
-			{{ book.tittle }}</p>
-		<p>Auteur :
-			{{ book.author }}</p>
-		<p>ISBN :
-			{{ book.code }}</p>
-		<p>Prix :
-			{{ book.price }}</p>
+		<h3>Livre :
+		</h3>
+		<p>{{ book.tittle }}</p>
 
-
+		<h3>Auteur :
+		</h3>
+		<p>{{ book.autor.name }}</p>
+		<h3>Editeur :
+		</h3>
+		<p>{{ book.editor.name }}</p>
 		<a href="{{ path('book_detail', {'id': book.id}) }}" class="btn btn-primary">Voir le livre</a>
 
-		<hr>
+	{% else %}
+		<li>Aucun livre trouvé.</li>
 	{% endfor %}
-	<a href="{{ path('book_add') }}" class="btn btn-primary">Ajouter un livre</a>
+
 {% endblock %}

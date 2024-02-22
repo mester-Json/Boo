@@ -12,6 +12,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Author;
+use App\Entity\Editor;
+use Doctrine\ORM\Query\Expr\Select;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 
 class BookType extends AbstractType
@@ -25,12 +30,7 @@ class BookType extends AbstractType
                     new Length(['min' => 2, 'max' => 255]),
                 ],
             ])
-            ->add('Author', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['min' => 3, 'max' => 255]),
-                ],
-            ])
+
             ->add('Code', TextType::class, [
 
                 'constraints' => [
@@ -39,12 +39,39 @@ class BookType extends AbstractType
                 ],
 
             ])
-            ->add('price', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['min' => 1, 'max' => 255]),
-                ],
-            ])
+            ->add(
+                'price',
+                TextType::class,
+                [
+                    'constraints' => [
+                        new NotBlank(),
+                        new Length(['min' => 1, 'max' => 255]),
+                    ],
+
+                ]
+            )
+            ->add(
+                'autor',
+                EntityType::class,
+                [
+                    'class' => Author::class,
+                    'choice_label' => 'name',
+                    'constraints' => [
+                        new NotBlank(),
+                    ]
+                ]
+            )
+            ->add(
+                'editor',
+                EntityType::class,
+                [
+                    'class' => Editor::class,
+                    'choice_label' => 'name',
+                    'constraints' => [
+                        new NotBlank(),
+                    ]
+                ]
+            )
         ;
     }
 

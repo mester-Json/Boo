@@ -5,6 +5,9 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Book;
+use App\Entity\Author;
+use App\Entity\Editor;
+
 use Faker;
 
 class AppFixtures extends Fixture
@@ -15,16 +18,25 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
         $faker = Faker\Factory::create('fr_FR');
 
-        $persone = [];
+        $book = [];
 
         for ($i = 0; $i < 10; $i++) {
-            $persone[$i] = new Book();
-            $persone[$i]->setTittle($faker->sentence(nbWords: 3));
-            $persone[$i]->setAuthor($faker->name);
-            $persone[$i]->setCode($faker->regexify('[A-Z]{5}[0-4]{3}'));
-            $persone[$i]->setPrice($faker->randomFloat(2, 10, 1000));
-            $manager->persist($persone[$i]);
+            $book[$i] = new Book();
+            $book[$i]->setTittle($faker->sentence(nbWords: 3));
+            $author = new Author();
+            $author->setName($faker->sentence(nbWords: 3));
+            $manager->persist($author);
+            $book[$i]->setAutor($author);
+            $book[$i]->setCode($faker->regexify('[A-Z]{5}[0-4]{3}'));
+            $book[$i]->setPrice($faker->randomFloat(2, 10, 1000));
+            $editor = new Editor();
+            $editor->setName($faker->sentence(nbWords: 3));
+            $editor->setAdress($faker->address);
+            $manager->persist($editor);
+            $book[$i]->setEditor($editor);
+            $manager->persist($book[$i]);
         }
         $manager->flush();
+
     }
 }
